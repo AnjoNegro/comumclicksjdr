@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	
+	<meta charset=utf-8>
+	<title>Conheça SJDR</title>
+	<link rel="stylesheet" href="styles2.css">
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	
+	<div class="mapa-aqui">
+	</div>
+	
+
+	
+</head>
+
+<body>
+	 <div class="container">
+	
+	 <article>
+		<header><br/>
+		
+			<h1 id="com_click">COM UM CLICK</h1>
+			<br/>
+			<h1>CONHEÇA SÃO JOÃO DEL REI</h1>
+			<h2>E GANHE PRÊMIOS E DINHEIRO!</h2>
+		</header>
+		<br/>
+		<br/>
+		
+		
+	   
+		<div class="botao">
+			<input id="click"   type=button value="HOME" onclick="#()">
+			<input id="click1"  type=button value="REGULAMENTO" onclick="#()">
+			<input id="click2"  type=button value="ONDE ESTOU?" onclick="meu_local()">
+			<input id="click3"  type=button value="ROTAS?" onclick="#()"> 
+			<input id="click4"  type=button value="ASSOCIADOS" onclick="3()">
+			<input id="click5"  type=button value="EVENTOS" onclick="#()">
+			<input id="click6"  type=button value="MEU OURO" onclick="#()">
+			<input id="click7"  type=button value="PROMOÇÕES" onclick="#()">
+			<input id="click8"  type=button value="OUTRAS CIDADES" onclick="#()">
+			
+		</div>
+		<div id="mapa"/></p> <br/>
+	
+		</article>
+	<script>
+		var infoWindow= new google.maps.InfoWindow();
+	
+	function meu_local(){
+	
+		if(navigator.geolocation)
+			navigator.geolocation.getCurrentPosition(mostrarMapa, erro);
+		else
+			alert('Este navegador não tem suporte a Geolocalização');
+			
+		}
+	
+		
+		function erro(err){
+			var mensagem="";
+			switch(err.code){
+				case  1: mensagem="Permissao negada"; break;
+				case  2: mensagem="Conexão mal sucedida"; break;
+				case  3: mensagem="Tempo Esgotado"; break;
+				default: mensagem="Não foi possivel mostrar o mapa";
+			}
+			alert(mensagem+". O codigo de erro é "+err.code);
+			//alert('Não foi possivel´ mostrar o mapa');
+
+		}
+		
+		function mostrarMapa(position) {
+			var mapa=document.getElementById("mapa");
+			mapa.style.display="block";
+			var latitude = position.coords.latitude;
+			var longitude = position.coords.longitude;
+			var opcoes={
+				zoom:17,
+				mapTypeId: google.maps.MapTypeId.ROAD
+			}
+			var maps=new google.maps.Map(document.getElementById("mapa"),opcoes);
+			var onde_estou = new google.maps.LatLng(latitude, longitude);
+			maps.setCenter(onde_estou);
+			infoWindow.setContent("Eu estou aqui...");
+			infoWindow.setPosition(onde_estou);
+			infoWindow.open(maps);
+		}
+
+
+	
+	</script>
+	
+</body>
+	</div>
+
+</body>
+
+</html>
